@@ -1,0 +1,24 @@
+.fa-heart {
+    color :palevioletred;
+    cursor : pointer;
+}
+.display-4{
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 0.5;
+}
+
+.container{
+  margin-top: 50px;
+  
+}
+
+.width{
+ width: 60%;
+
+}
+
+
+.unA-btn{
+  background-color: red;
+}

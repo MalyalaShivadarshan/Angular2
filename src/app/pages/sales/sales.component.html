@@ -1,0 +1,39 @@
+
+    <h1 class="mt20 mb20" style="text-align: center;"> Sales Report </h1>
+
+
+    <table class="table table-striped text-center">
+      <thead>
+      <tr>
+         
+          <th scope="col">Customer Name</th>
+          
+          <th scope="col">Before Discount</th>
+          <th scope="col">Discount </th>
+          <th scope="col">Total(After discount)</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date</th>
+   
+      </tr>
+      </thead>
+      <tbody>
+  
+      <tr *ngFor="let order of page?.content">
+     
+          <td class="align-middle">{{order.buyerName}}</td>
+          
+          <td class="align-middle">{{order.orderAmount | currency:"₹"}}</td>
+          <td>20%</td>
+          <td>{{ order.orderAmount - order.orderAmount*0.2 | currency:"₹"}}</td>
+          <td class="align-middle">Done</td>
+          <td class="align-middle">{{order.updateTime | date}}</td>
+         
+      </tr>
+      </tbody>
+
+    
+  </table>
+ 
+  
+
+

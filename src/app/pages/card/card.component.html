@@ -1,0 +1,79 @@
+<div style="text-align: center;">
+
+
+  <input type="text" name="search" [(ngModel)]="searchText" placeholder="Search        "
+    class="display-4 mb-5 mt20 width" />
+
+  <h1 style="text-align: center;" class="display-4 mb-5 mt20">{{title}}</h1>
+
+</div>
+
+
+<!-- <div class="row card-deck text-center">
+
+
+  <div *ngFor="let productInfo of page?.content | filter:searchText" class="col-lg-4 ">
+    <div class="card mb-4">
+      <img height="50%" class="card-img-top" src="{{productInfo.productIcon}}" alt="{{productInfo.productName}}">
+      <div class="card-body">
+        <h4 class="card-title ">{{productInfo.productName}}</h4>
+
+        <div class="text-left">
+          <p class="card-test"><strong></strong>{{productInfo.productDescription}}</p>
+          <p class="card-text"><strong>Price: </strong>{{productInfo.productPrice | currency:"₹"}}</p>
+          <p class="card-text"><strong>Stock: </strong>{{productInfo.productStock}}</p>
+        </div>
+        <br>
+        <a routerLink="/product/{{productInfo.productId}}" *ngIf="productInfo.productStatus == 0; else offBlock"
+          class="btn btn-primary btn-lg">Get It!</a>
+        <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Unavailable</a></ng-template>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+
+  <div class="row">
+
+  <div class="col-lg-4 d-flex " *ngFor="let productInfo of page?.content | filter:searchText">
+    <div class="card ">
+      <div class="card-body">
+        <img src="{{productInfo.productIcon}}" alt="{{productInfo.productName}}" class="img-fluid h-50">
+        <div class="card-title" style="text-align: center;">
+          {{productInfo.productName}}
+        </div>
+        <p class="card-subtitle mb-2 text-muted mt10" style="font-size: 12px; text-align: center;">
+          {{productInfo.productDescription}}
+        </p>
+        <ul class="list-group list-group-flush ">
+          <li class="list-group-item mt20"><strong>Price: </strong>{{productInfo.productPrice | currency:"₹"}}</li>
+          <li class="list-group-item"><strong>Stock: </strong>{{productInfo.productStock}}</li>
+        </ul>
+        <div style="text-align: center ;">
+          <!-- getIt -->
+          <button mat-raised-button color="primary" style="margin-top: 40px ; " 
+          routerLink="/product/{{productInfo.productId}}" *ngIf="productInfo.productStatus == 0; else offBlock">Get It !</button>
+          <!-- unavaliable -->
+          <ng-template #offBlock>
+            <button mat-raised-button class="unA-btn"  style="margin-top: 40px ; " disabled>Unavailable</button>
+          </ng-template>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="container" style="text-align: center;">
+  <app-pagination [currentPage]="page"></app-pagination>
+</div>

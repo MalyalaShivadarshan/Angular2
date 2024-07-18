@@ -1,0 +1,78 @@
+<div class="container mt20 mb20">
+
+  <h1 style="text-align: center;">Add Product</h1>
+
+</div>
+<div class="mt20 ">
+  <mat-card
+    style="max-width: 500px;margin:auto"
+    [class.mat-elevation-z8]="true"
+  >
+    <form
+      style="display: flex;flex-direction: column;"
+      [formGroup]="createProductForm"
+      (ngSubmit)="onSubmit()"
+    >
+
+    <mat-form-field appearance="fill"> 
+      <input matInput type="number" placeholder="id ..." name="productId" 
+      [(ngModel)]="productInfo.productId"  formControlName="productId" />
+    </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="name ..." name="productName" formControlName="productName" 
+        [(ngModel)]="productInfo.productName"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <textarea
+          matInput
+          placeholder="description ...."
+          name="productDescription"
+          formControlName="productDescription"
+          [(ngModel)]="productInfo.productDescription"
+        ></textarea>
+      </mat-form-field>
+ 
+
+      <mat-form-field appearance="fill">
+        <input matInput type="number" placeholder="product price ...." name="productPrice" formControlName="productPrice"
+        [(ngModel)]="productInfo.productPrice" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="product icon ...." name="productIcon" formControlName="productIcon" 
+        [(ngModel)]="productInfo.productIcon"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input type="number" matInput placeholder="four categoryType ( 0 to 3) .." name="categoryType" 
+        [(ngModel)]="productInfo.categoryType" formControlName="categoryType" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input type="number"  matInput placeholder="Stock .." 
+        [(ngModel)]="productInfo.productStock" />
+      </mat-form-field>
+
+
+      <button
+        class="spacing-top"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="isLoading"
+      >
+        submit
+      </button>
+      <p *ngIf="failed" class="warn-color mat-small spacing-top">failed!</p>
+      <div
+        *ngIf="isLoading"
+        class="spacing-top spacing-left"
+        style="display: flex;justify-content: center;"
+      >
+        <mat-spinner diameter="25"></mat-spinner>
+      </div>
+    </form>
+  </mat-card>
+</div>

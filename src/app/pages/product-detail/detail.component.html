@@ -1,0 +1,75 @@
+
+
+
+
+
+
+
+<div class="container mt20">
+  <div class="row">
+    <div class="col-lg-6 offset-3 d-flex">
+      <div class="card ">
+        <img class="card-img-top" src="{{productInfo?.productIcon}}">
+        
+        <div class="card-body">
+
+          <h4 class="card-title ">{{productInfo?.productName}}</h4>
+          <form name="form" #form='ngForm' (ngSubmit)="productInfo?.productStatus == 0 && addToCart()">
+
+            <input hidden name="productId" [value]=productInfo?.productId>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Description: </strong>{{productInfo?.productDescription}}
+              </li>
+              <li class="list-group-item"> <strong>Price: </strong>
+                <label id="price">{{productInfo?.productPrice | currency:"₹"}}</label>
+              </li>
+              <li class="list-group-item">
+                <strong>Stock: </strong>{{productInfo?.productStock}}
+              </li>
+              <li class="list-group-item">
+                <label class="card-text">
+                  <strong>Quantity: </strong>
+                  <input [(ngModel)]=count (change)="validateCount()" type="number" name="count" required min="1"
+                    [max]=productInfo?.productStock>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <strong>Subtotal: </strong>
+                <label id="subtotal">{{count * productInfo?.productPrice | currency:"₹"}}</label>
+              </li>
+              <li class="list-group-item" style="text-align: center;">
+
+                <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                *ngIf="currentUser && addedToWishlist" (click)="handleRemoveFromWishList(productInfo.productId)">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+
+                <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                *ngIf="currentUser && !addedToWishlist" (click)="handleAddToWishList(productInfo.productId)">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+
+              </li>
+
+
+              <li class="list-group-item" style="text-align: center;">
+                <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                type="submit" [disabled]="!form.form.valid" *ngIf="productInfo?.productStatus == 0; else offBlock">
+                  <mat-icon>add_shopping_cart</mat-icon>
+                </button>
+
+                <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Unavailable</a></ng-template>
+
+              </li>
+        
+            </ul>
+
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>

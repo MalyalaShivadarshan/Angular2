@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon"  aria-label="Example icon-button with menu icon" [routerLink]="root">
+        <mat-icon>store</mat-icon>
+    </button>
+    <span [routerLink]="root" style="margin-left: 20px;">ShopForHome</span>
+    <span class="example-spacer"></span>
+
+
+
+    <div *ngIf="!currentUser || currentUser.role == Role.Customer">
+
+        <button mat-raised-button color="primary" routerLink="/category/0" class="mr30 btn-color"> Chairs </button>
+        <button mat-raised-button color="primary" routerLink="/category/1" class="mr30 btn-color"> Mirrors </button>
+        <button mat-raised-button color="primary" routerLink="/category/2" class="mr30 btn-color"> Sofa </button>
+        <button mat-raised-button color="primary" routerLink="/category/3" class="mr100 btn-color"> Clocks </button>
+
+    </div>
+
+
+
+    <mat-icon matBadgeColor="warn" class="mr30 mat-icon1" *ngIf="!currentUser || currentUser.role == Role.Customer"
+        routerLink="cart">  add_shopping_cart
+    </mat-icon>
+
+
+
+    <div *ngIf="currentUser && currentUser.role == Role.Manager">
+
+
+
+        <button mat-raised-button color="primary" routerLink="/discount" class="mr30 btn-color"> Discount </button>
+        <button mat-raised-button color="primary" routerLink="/admin/user" (click)=getUsers() class="mr30 btn-color">
+            Users </button>
+        <button mat-raised-button color="primary" routerLink="/seller/product" class="mr30 btn-color"> Stocks </button>
+
+        <button mat-raised-button color="primary" routerLink="/sales" class="mr30 btn-color"> Sales </button>
+        <button mat-raised-button color="primary" routerLink="/addProduct" class="mr30 btn-color"> Add Product </button>
+    </div>
+
+    <div *ngIf="currentUser && currentUser.role == Role.Customer">
+        <button mat-raised-button color="primary" routerLink="/wishlist" class="mr30 btn-color"> Wishlist </button>
+    </div>
+
+    <ng-container *ngIf="currentUser; else noUser">
+
+        <button mat-raised-button color="primary" routerLink="/order" class="mr20 btn-color"> Orders </button>
+
+        <button mat-raised-button color="primary" routerLink="/profile" class="mr20 btn-color"> {{name}} </button>
+
+        <button mat-raised-button (click)="logout()" routerLink="/login" [queryParams]="{logout: true}"
+            routerLink="/login" class="mr20 singOut">
+            Sign out
+         </button>
+    </ng-container>
+    
+    <ng-template #noUser>
+
+        <button mat-raised-button color="primary" routerLink="/login" class="mr20"> Sign In </button>
+        <button mat-raised-button color="primary" routerLink="/register" class="mr20 singUp"> Sign Up </button>
+
+    </ng-template>
+
+
+</mat-toolbar>

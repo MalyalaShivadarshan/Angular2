@@ -1,0 +1,30 @@
+
+
+.full-width{
+    width: 100%;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  
+  .login-btn{
+    text-align: center;
+    background-color: orangered;
+    color: white;
+    /* style="text-align: center; background-color: orangered; color: white" */
+  }
+  
+  mat-card{
+    background-color:#faddaa;
+  }
+  
+  
+  
+  .full-width{
+      width: 100%;
+  }
